@@ -58,10 +58,6 @@ class RegistrationScreen extends StatelessWidget {
                   );
                 },
               ),
-              CustomButton(
-                onPressed: () {},
-                title: 'Войти',
-              ),
               TextButton(
                 onPressed: () {
                   Navigator.pushReplacement(
