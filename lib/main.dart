@@ -1,4 +1,8 @@
 import 'package:driver_app/core/dio_setting.dart';
+import 'package:driver_app/feature/auth/bloc/auth_bloc.dart';
+import 'package:driver_app/feature/auth/repositoey/auth_repository.dart';
+import 'package:driver_app/feature/set_users_data/bloc/set_users_data_bloc.dart';
+import 'package:driver_app/feature/set_users_data/repositories/set_users_data_repositories.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -16,7 +20,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiRepositoryProvider( // много Provider
+    return MultiRepositoryProvider(
+      // много Provider
       providers: [
         RepositoryProvider(
           create: (context) => DioSettings(),
@@ -25,10 +30,10 @@ class MyApp extends StatelessWidget {
           create: (context) => RegistrationRepository(
               dio: RepositoryProvider.of<DioSettings>(context).dio),
         ),
-        // RepositoryProvider(
-        //   create: (context) => AuthRepository(
-        //       dio: RepositoryProvider.of<DioSettings>(context).dio),
-        // ),
+        RepositoryProvider(
+          create: (context) => AuthRepository(
+              dio: RepositoryProvider.of<DioSettings>(context).dio),
+        ),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -38,17 +43,17 @@ class MyApp extends StatelessWidget {
                   RepositoryProvider.of<RegistrationRepository>(context),
             ),
           ),
-          // BlocProvider(
-          //   create: (context) => AuthBloc(
-          //     repository: RepositoryProvider.of<AuthRepository>(context),
-          //   ),
-          // ),
-          // BlocProvider(
-          //   create: (context) => SetUsersDataBloc(
-          //     repository:
-          //         RepositoryProvider.of<SetUsersDataRepository>(context),
-          //   ),
-          // ),
+          BlocProvider(
+            create: (context) => AuthBloc(
+              repository: RepositoryProvider.of<AuthRepository>(context),
+            ),
+          ),
+          BlocProvider(
+            create: (context) => SetUsersDataBloc(
+              repository:
+                  RepositoryProvider.of<SetUsersDataRepository>(context),
+            ),
+          ),
         ],
         child: MaterialApp(
           theme: ThemeData(

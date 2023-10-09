@@ -31,7 +31,7 @@ class RegistrationScreen extends StatelessWidget {
               CustomTextField(
                 controller: controllerOtp,
                 maxLength: 4,
-                onChanged: (val) {},
+                onChanged: (val) {}, 
               ),
               BlocConsumer<RegistrationBloc, RegistrationState>(
                 listener: (context, state) {
