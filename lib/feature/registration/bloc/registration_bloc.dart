@@ -1,5 +1,5 @@
-import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../models/token_model.dart';
 import '../repositories/registration_repository.dart';
@@ -12,6 +12,7 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
     on<SendCodeEvent>(
       (event, emit) async {
         emit(RegistrationLoading());
+        await Future.delayed(const Duration(seconds: 1));
         try {
           final model = await repository.registration(otp: event.otp);
           emit(RegistrationSucces(model: model));

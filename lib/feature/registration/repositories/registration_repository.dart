@@ -14,11 +14,13 @@ class RegistrationRepository {
       'accounts/tg-login',
       data: {'otp': otp},
     );
+    // сохраняем
     final result = TokenModel.fromJson(response.data);
     // accessToken есть время жизни 20 дней примерно
     await prefs.setString('accessToken', result.access ?? '');
     // когда обычный токен закончелся refreshToken обновляет его
     await prefs.setString('refreshToken', result.refresh ?? '');
+    
     final userInfo = await dio.get(
       'accounts/me/',
       options: Options(

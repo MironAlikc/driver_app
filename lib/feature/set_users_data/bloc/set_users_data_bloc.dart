@@ -1,6 +1,5 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../repositories/set_users_data_repositories.dart';
 
@@ -26,4 +25,3 @@ class SetUsersDataBloc extends Bloc<SetUsersDataEvent, SetUsersDataState> {
   }
   final SetUsersDataRepository repository;
 }
-

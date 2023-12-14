@@ -3,6 +3,7 @@ import 'package:driver_app/core/widgets/custom_button.dart';
 import 'package:driver_app/core/widgets/custom_text_field.dart';
 import 'package:driver_app/feature/auth/auth_screen.dart';
 import 'package:driver_app/feature/registration/bloc/registration_bloc.dart';
+import 'package:driver_app/feature/set_users_data/set_users_data_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -31,18 +32,18 @@ class RegistrationScreen extends StatelessWidget {
               CustomTextField(
                 controller: controllerOtp,
                 maxLength: 4,
-                onChanged: (val) {}, 
+                onChanged: (val) {},
               ),
               BlocConsumer<RegistrationBloc, RegistrationState>(
                 listener: (context, state) {
                   if (state is RegistrationSucces) {
-                    // Navigator.pushReplacement(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     // если состояние успешное тогда перекин на экран SetUsersDataScreen
-                    //     builder: (context) => const SetUsersDataScreen(),
-                    //   ),
-                    // );
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        // если состояние успешное тогда перекин на экран SetUsersDataScreen
+                        builder: (context) => const SetUsersDataScreen(),
+                      ),
+                    );
                   }
                 },
                 builder: (context, state) {
